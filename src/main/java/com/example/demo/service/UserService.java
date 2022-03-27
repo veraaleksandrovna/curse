@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
         }
         //TODO: send confirmation token
-        return "login";
+        return "redirect:/login";
     }
 
     @Override
