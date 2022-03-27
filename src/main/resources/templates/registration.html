@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<form method="post">
-    <input type="email" name="email" placeholder="email">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
+<!--/*@thymesVar id="user" type="com.example.demo.domain.User"*/-->
+<form method="post" th:object="${user}" th:action="@{/register}">
+    <input type="email" name="email" th:value="*{email}" placeholder="email">
+    <input type="text" name="username" th:value="*{username}" placeholder="username">
+    <input type="password" name="password" th:value="*{password}" placeholder="password">
     <input type="password" name="confirm_password" placeholder="repeat pls">
     <input type="submit" value="Зарегистрироваться">
 </form>
