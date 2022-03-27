@@ -3,22 +3,26 @@ package com.example.demo.service;
 import com.example.demo.domain.User;
 import com.example.demo.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     UserRepo userRepo;
+    BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserService(UserRepo userRepo){
         this.userRepo = userRepo;
     }
 
-    public void regiserNewUser(User user){
+    public String regiserNewUser(User user){
         Optional<User> userOptional = userRepo.findUserByEmail(user.getEmail());
 
         if (userOptional.isPresent())
@@ -27,19 +31,18 @@ public class UserService {
         }
         else
         {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         userRepo.save(user);
         }
+        //TODO: send confirmation token
+        return "";
     }
 
-    public User log_in(User user)
-    {
-        if(userRepo.findUserByEmail(user.getEmail()).isPresent()) {
-            Optional<User> optionalUser = userRepo.findUserByEmail(user.getEmail());
-            if(optionalUser.get().getPassword()==user.getPassword()) {
-                return optionalUser.get();
-            }
-            else throw new IllegalStateException("Неверный пароль");
-        }
-        else throw new IllegalStateException("Такого юзера нет");
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepo.findUserByEmail(email).get();
     }
+
+
 }
