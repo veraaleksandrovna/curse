@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
     UserRepo userRepo;
-    BCryptPasswordEncoder passwordEncoder;
+    //BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserService(UserRepo userRepo){
@@ -31,12 +31,12 @@ public class UserService implements UserDetailsService {
         }
         else
         {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+        //String encodedPassword = passwordEncoder.encode(user.getPassword());
+        //user.setPassword(encodedPassword);
         userRepo.save(user);
         }
         //TODO: send confirmation token
-        return "";
+        return "login";
     }
 
     @Override

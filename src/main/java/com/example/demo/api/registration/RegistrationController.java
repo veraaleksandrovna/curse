@@ -20,8 +20,9 @@ public class RegistrationController {
     private final RegistrationService service;
 
     @PostMapping("/register")
-    public String register(@RequestBody RegistrationRequest request)
+    public String register(@RequestParam String email, @RequestParam String username, @RequestParam String password)
     {
+        RegistrationRequest request = new RegistrationRequest(username, email, password);
         return service.register(request);
     }
 

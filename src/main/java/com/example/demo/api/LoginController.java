@@ -14,6 +14,7 @@ import javax.servlet.Registration;
 import java.util.Objects;
 
 
+@Controller
 public class LoginController {
 
 
