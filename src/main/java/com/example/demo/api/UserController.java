@@ -35,9 +35,6 @@ public class UserController {
         user.setEmail(email);
         user.setPassword(password);
         user = userService.log_in(user);
-        Session.Cookie cookie = new Session.Cookie();
-        cookie.setName("userData");
-        cookie.setComment(user.getUsername() + '\n' + user.getEmail());
         return "redirect:home";
     }
 
