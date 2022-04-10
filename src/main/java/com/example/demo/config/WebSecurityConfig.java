@@ -3,6 +3,7 @@ package com.example.demo.config;
 import com.example.demo.domain.roles.UserRole;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +20,16 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService service;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        // Setting Service to find User in the database.
+        // And Setting PassswordEncoder
+        auth.userDetailsService(service);
+
+    }
+
     protected void configure(HttpSecurity http) throws Exception {
         http
                 // мы включаем авторизацию
@@ -34,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //Путь LoginPage
                 .loginPage("/login")
+                .defaultSuccessUrl("/hello")
                 //Доступ всем :)
                 .permitAll()
                 .and()

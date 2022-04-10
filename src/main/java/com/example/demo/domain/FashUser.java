@@ -38,6 +38,7 @@ public class FashUser implements Serializable, UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -78,6 +79,7 @@ public class FashUser implements Serializable, UserDetails {
         this.email = email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }

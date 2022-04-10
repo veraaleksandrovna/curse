@@ -8,9 +8,9 @@
     <title>Login</title>
 </head>
 <body>
-<form method="post" th:action="@{/login}">
-    <input type="text" name="email">
-    <input type="password" name="password">
+<form th:method="post" th:action="@{/login}" th:object="${fashUser}" >
+    <input type="text" th:field="*{username}">
+    <input type="password" th:field="*{password}">
     <input type="submit" value="Войти">
 </form>
 <a href="registration.html">Зарегистрироваться</a>

@@ -22,11 +22,11 @@ public class UserService implements UserDetailsService {
     }
 
     public String regiserNewUser(FashUser fashUser){
-        Optional<FashUser> userOptional = userRepo.findUserByEmail(fashUser.getEmail());
+        Optional<FashUser> userOptional = userRepo.findUserByUsername(fashUser.getUsername());
 
         if (userOptional.isPresent())
         {
-            throw new IllegalStateException("Данный e-mail занят");
+            throw new IllegalStateException("Данный username занят");
         }
         else
         {
@@ -39,8 +39,8 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepo.findUserByEmail(email).get();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepo.findUserByUsername(username).get();
     }
 
 
