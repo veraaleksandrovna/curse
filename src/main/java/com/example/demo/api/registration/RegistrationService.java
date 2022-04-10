@@ -1,11 +1,10 @@
 package com.example.demo.api.registration;
 
 
-import com.example.demo.domain.User;
+import com.example.demo.domain.FashUser;
 import com.example.demo.domain.roles.UserRole;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +19,6 @@ public class RegistrationService {
 //        if(!IsValidEmail){
 //            throw new IllegalStateException("Email not valid");
 //        }
-        return userService.regiserNewUser(new User(request.getUsername(), request.getEmail(), request.getPassword(), UserRole.USER));
+        return userService.regiserNewUser(request.getUser());
     }
 }

@@ -5,7 +5,6 @@ import com.example.demo.domain.roles.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.jackson2.SimpleGrantedAuthorityMixin;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,8 +13,8 @@ import java.util.Collections;
 
 
 @Entity
-@Table(name = "userrrrr")
-public class User implements Serializable, UserDetails {
+@Table(name = "user")
+public class FashUser implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -87,10 +86,14 @@ public class User implements Serializable, UserDetails {
         this.password = password;
     }
 
-    public User() {
+    public FashUser() {
     }
 
-    public User(String username, String email, String password, UserRole role) {
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public FashUser(String username, String email, String password, UserRole role) {
         this.username = username;
         this.email = email;
         this.password = password;

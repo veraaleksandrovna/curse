@@ -1,4 +1,4 @@
-package com.example.demo.security.config;
+package com.example.demo.config;
 
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 @AllArgsConstructor
@@ -17,32 +18,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService service;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                // мы включаем авторизацию
                 .authorizeRequests()
-                .antMatchers("/registration/**")
+                // для главной странички доступ доступен всем
+                .antMatchers("/", "/register").permitAll()
+                // а для всех остальных мы требуем авторизацию
+                .anyRequest().authenticated()
+                .and()
+                //включаем форму Login
+                .formLogin()
+                //Путь LoginPage
+                .loginPage("/login")
+                //Доступ всем :)
                 .permitAll()
-                .anyRequest().authenticated().and()
-                .formLogin().loginPage("/login").permitAll();
+                .and()
+                // Также включаем Logout и им тоже все могут пользоваться
+                .logout()
+                .permitAll();
     }
+
+    // Обслуживает учетные записи
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
+        auth.userDetailsService(service)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider();
 
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(service);
-        return provider;
-    }
 }
 

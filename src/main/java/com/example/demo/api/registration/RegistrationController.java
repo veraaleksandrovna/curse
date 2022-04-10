@@ -1,33 +1,30 @@
 package com.example.demo.api.registration;
 
-import com.example.demo.api.registration.RegistrationRequest;
-import com.example.demo.api.registration.RegistrationService;
-import com.example.demo.domain.User;
-import com.example.demo.service.UserService;
+import com.example.demo.domain.FashUser;
+import com.example.demo.domain.roles.UserRole;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.Registration;
-
 @Controller
-@RequestMapping("registration")
+@RequestMapping("/")
 @AllArgsConstructor
 public class RegistrationController {
 
     private final RegistrationService service;
 
     @PostMapping("/register")
-    public String register(@RequestParam String email, @RequestParam String username, @RequestParam String password)
+    public String register(@ModelAttribute("fashUser") FashUser user)
     {
-        RegistrationRequest request = new RegistrationRequest(username, email, password);
+        user.setRole(UserRole.USER);
+        RegistrationRequest request = new RegistrationRequest(user);
         return service.register(request);
     }
 
     @GetMapping("/register")
-    public String registrationForm(){
+    public String registrationForm(Model model){
+        model.addAttribute("fashUser", new FashUser());
         return "registration";
     }
 }

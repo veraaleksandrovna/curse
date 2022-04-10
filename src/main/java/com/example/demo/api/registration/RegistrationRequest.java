@@ -1,5 +1,6 @@
 package com.example.demo.api.registration;
 
+import com.example.demo.domain.FashUser;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,7 +11,5 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
-    private final String username;
-    private final String email;
-    private final String password;
+    private final FashUser user;
 }

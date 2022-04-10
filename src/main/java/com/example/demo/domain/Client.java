@@ -22,7 +22,7 @@ public class Client {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private FashUser fashUser;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Client {
         this.age = age;
     }
 
-    public User getUser() {
-        return user;
+    public FashUser getUser() {
+        return fashUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(FashUser fashUser) {
+        this.fashUser = fashUser;
     }
 }

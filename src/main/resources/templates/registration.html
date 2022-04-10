@@ -8,16 +8,16 @@
     <title>Login</title>
 </head>
 <body>
-<!--th:object="${user}" th:action="@{/register}"
+<!--th:object="${fashUser}" th:action="@{/register}"
 th:value="*{email}"
 th:value="*{username}"
 th:value="*{password}"
 -->
-<!--/*@thymesVar id="user" type="com.example.demo.domain.User"*/-->
-<form method="post" >
-    <input type="email" name="email"  placeholder="email">
-    <input type="text" name="username"  placeholder="username">
-    <input type="password" name="password"  placeholder="password">
+<!--/*@thymesVar id="fashUser" type="com.example.demo.domain.FashUser"*/-->
+<form th:method="post" th:action="@{/register}" th:object="${fashUser}" >
+    <input type="email" th:field="*{email}"  placeholder="email">
+    <input type="text" th:field="*{username}"  placeholder="username">
+    <input type="password" th:field="*{password}"  placeholder="password">
     <input type="password" name="confirm_password" placeholder="repeat pls">
     <input type="submit" value="Зарегистрироваться">
 </form>
