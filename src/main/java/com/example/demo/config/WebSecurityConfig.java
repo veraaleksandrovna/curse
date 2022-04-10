@@ -35,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // мы включаем авторизацию
                 .authorizeRequests()
                 // для главной странички доступ доступен всем
-                .antMatchers("/a/**").hasRole(UserRole.ADMIN.name())
-                .antMatchers("/u/**").hasRole(UserRole.USER.name())
+                .antMatchers("/a/**", "/u/**").authenticated()
                 .antMatchers("/", "/register", "/login").permitAll()
                 // а для всех остальных мы требуем авторизацию
                 .anyRequest().authenticated()
@@ -45,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //Путь LoginPage
                 .loginPage("/login")
-                .defaultSuccessUrl("/hello")
+                .defaultSuccessUrl("/u/hello")
                 //Доступ всем :)
                 .permitAll()
                 .and()

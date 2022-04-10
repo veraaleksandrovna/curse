@@ -26,6 +26,7 @@ public class LoginController {
     public String register(@ModelAttribute("fashUser") FashUser user, HttpSession httpSession)
     {
         service.loadUserByUsername(user.getEmail());
+        user.setRole(UserRole.USER);
         httpSession.setAttribute("user", user);
         return "hello";
     }
@@ -36,7 +37,7 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/u/hello")
     public String hello(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username","Hello " + auth.getName() + "!");
