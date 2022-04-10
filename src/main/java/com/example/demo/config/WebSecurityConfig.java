@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.domain.roles.UserRole;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // мы включаем авторизацию
                 .authorizeRequests()
                 // для главной странички доступ доступен всем
-                .antMatchers("/", "/register").permitAll()
+                .antMatchers("/a/**").hasRole(UserRole.ADMIN.name())
+                .antMatchers("/u/**").hasRole(UserRole.USER.name())
+                .antMatchers("/", "/register", "/login").permitAll()
                 // а для всех остальных мы требуем авторизацию
                 .anyRequest().authenticated()
                 .and()
