@@ -37,11 +37,5 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/u/hello")
-    public String hello(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username","Hello " + auth.getName() + "!");
-        return "hello";
-    }
 
 }
