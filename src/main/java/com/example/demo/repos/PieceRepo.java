@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
@@ -17,9 +18,9 @@ public interface PieceRepo extends JpaRepository<Piece, Long> {
     int countPieceById();
 
     @Query("select 3 from Piece p where p.type='bag'")
-    Optional<Piece> findThreeBags();
+    ArrayList<Piece> findThreeBags();
 
     @Query("select 3 from Piece p where p.type='sneakers'")
-    Optional<Piece> findThreeSneakers();
+    ArrayList<Piece> findThreeSneakers();
 
 }
