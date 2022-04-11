@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.domain.Piece;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,10 @@ public class MainPageController {
     public String hello(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username","Hello " + auth.getName() + "!");
+        model.addAttribute("bag1",);
+
+
+
         return "hello";
     }
 
