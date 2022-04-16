@@ -12,7 +12,7 @@ public class Type {
     private Long id;
 
 @Column(name = "name")
-    private int name;
+    private String name;
 
     public Long getId() {
         return id;
@@ -22,11 +22,11 @@ public class Type {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

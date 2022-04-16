@@ -19,7 +19,7 @@ public class PieceService {
     }
 
     public ArrayList<Piece> findThreePieces(String type){
-        if(type.equals("bag"))
+        if(type.equals("bags"))
         {
             return repo.findThreeBags();
         }

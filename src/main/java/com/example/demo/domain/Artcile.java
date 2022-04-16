@@ -1,9 +1,12 @@
 package com.example.demo.domain;
 
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
 @Table(name = "article")
 public class Artcile {
     @Id

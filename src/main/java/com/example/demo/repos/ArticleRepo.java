@@ -17,6 +17,6 @@ public interface ArticleRepo extends JpaRepository<Artcile, Long> {
     @Query("select count (a) from Artcile a")
     int countArticleById();
 
-    @Query("select 3 from Artcile a")
+    @Query("select a from Artcile a")
     ArrayList<Artcile> findThreeArticles();
 }
