@@ -29,4 +29,13 @@ public class PieceService {
         }
         else return null;
     }
+
+    public ArrayList<Piece> findAllBySection(String section){
+        return repo.findAllByTypeSection(section);
+    }
+
+    public Piece findById(Long id)
+    {
+        return repo.findPieceById(id);
+    }
 }

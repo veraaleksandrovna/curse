@@ -21,4 +21,8 @@ public class ArticleService {
     public ArrayList<Artcile> findThreeArticles(){
         return repo.findThreeArticles();
     }
+
+    public ArrayList<Artcile> findAll(){
+        return repo.findAll();
+    }
 }

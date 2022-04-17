@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${item}">
+
+<h3 th:text="${item.getName()}"></h3>
+<table>
+    <tr>
+        <td th:text="${item.getName()}" />
+        <td th:text="${item.getPrice()}" />
+        <td th:text="${item.getSize()}" />
+        <td th:text="${item.getType().getName()}" />
+    </tr>
+</table>
+<form method="post" action="">
+    <input type="submit" value="купить">
+</form>
+
+</body>
+</html>

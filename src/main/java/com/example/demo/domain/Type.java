@@ -14,6 +14,17 @@ public class Type {
 @Column(name = "name")
     private String name;
 
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    @Column(name = "section")
+    private String section;
+
+    public String getSection() {
+        return section;
+    }
+
     public Long getId() {
         return id;
     }
