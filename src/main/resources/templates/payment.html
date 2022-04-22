@@ -6,10 +6,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body th:object="${item}">
+<body th:object="${clientt}">
 
-<h3 th:text="${item.getName()}"></h3>
-<table>
+<table th:object="${item}">
     <tr>
         <td th:text="${item.getName()}" />
         <td th:text="${item.getPrice()}" />
@@ -17,7 +16,13 @@
         <td th:text="${item.getType().getName()}" />
     </tr>
 </table>
+<form method="post" th:action="@{/u/order/success(id=${item.getId()})}">
+    <input type="text" placeholder="Город" th:name="city">
+    <input type="text" placeholder="Улица" th:name="street">
+    <input type="text" placeholder="Дом" th:name="house">
+    <input type="text" placeholder="Квартира" th:name="apt">
+    <input type="submit" value="Оформить">
+</form>
 
-<a th:href="@{/u/order(id=${item.getId()})}">Buy</a>
 </body>
 </html>

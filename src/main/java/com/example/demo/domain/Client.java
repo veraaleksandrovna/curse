@@ -14,11 +14,12 @@ public class Client {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "age")
     private int age;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

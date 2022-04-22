@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
 import com.example.demo.domain.Artcile;
+import com.example.demo.domain.FashUser;
 import com.example.demo.domain.Piece;
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.PieceService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public class MainPageController {
     private final ArticleService articleService;
 
     @GetMapping("/u/hello")
-    public String hello(Model model){
+    public String hello(Model model, HttpSession session){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username","Hello " + auth.getName() + "!");
         ArrayList<Piece> bags = pieceService.findThreePieces("bags");

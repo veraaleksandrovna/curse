@@ -17,7 +17,13 @@
         <td th:text="${item.getType().getName()}" />
     </tr>
 </table>
+<br>
+<form method="post" th:action="@{/u/order/newCl(id=${item.getId()})}" th:object="${clientt}">
+    <input type="text" placeholder="name" th:field="*{name}">
+    <input type="text" placeholder="last name" th:field="*{lastName}">
+    <input type="text" placeholder="age" th:field="*{age}">
+    <input type="submit" value="Добавить данные клиента">
+</form>
 
-<a th:href="@{/u/order(id=${item.getId()})}">Buy</a>
 </body>
 </html>
