@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My account</title>
+</head>
+<body>
+<a th:href="@{/u/hello}">Назад</a>
+<table>
+    <form th:object="${user}" th:action="@{/u/account(flag=${'u'})}" method="post">
+    <tr>
+        <td>
+            <input type="text" placeholder="Имя пользователя" th:field="*{username}">
+        </td>
+        <td>
+            <input type="text" placeholder="Пароль" th:field="*{password}">
+        </td>
+        <td>
+            <input type="text" placeholder="Email" th:field="*{email}">
+        </td>
+        <td>
+            <input type="submit" value="Изменить">
+        </td>
+    </tr>
+    </form>
+    <form th:object="${client}" th:action="@{/u/account(flag=${'c'})}" method="post">
+    <tr>
+        <td>
+            <input type="text" placeholder="Имя" th:field="*{name}">
+        </td>
+        <td>
+            <input type="text" placeholder="Возраст" th:field="*{age}">
+        </td>
+        <td>
+            <input type="text" placeholder="Фамилия" th:field="*{lastName}">
+        </td>
+        <td>
+            <input type="submit" value="Изменить">
+        </td>
+    </tr>
+    </form>
+</table>
+
+
+</body>
+</html>

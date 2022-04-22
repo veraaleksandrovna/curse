@@ -43,5 +43,8 @@ public class UserService implements UserDetailsService {
         return userRepo.findUserByUsername(username).get();
     }
 
+    public void add(FashUser user){
+        userRepo.save(user);
+    }
 
 }
