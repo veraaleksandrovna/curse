@@ -47,4 +47,8 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
+    public Optional<FashUser> findById(Long id){
+        return userRepo.findById(id);
+    }
+
 }

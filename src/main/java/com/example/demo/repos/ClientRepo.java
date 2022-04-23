@@ -13,4 +13,7 @@ public interface ClientRepo extends JpaRepository<Client, Long> {
 
     @Query("select c from Client c where c.fashUser.id=?1")
     Optional<Client> checkIfExists(Long id);
+
+    @Query("select c from Client c where c.id=?1")
+    Client getUserByClientId(Long id);
 }

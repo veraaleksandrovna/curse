@@ -6,6 +6,8 @@ import com.example.demo.repos.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class ClientService {
     ClientRepo repo;
@@ -28,4 +30,16 @@ public class ClientService {
         return repo.checkIfExists(user.getId()).get();
     }
 
+    public ArrayList<Client> findAll(){
+        return (ArrayList<Client>) repo.findAll();
+    }
+
+    public Long getUserId(Long id){
+        return repo.getUserByClientId(id).getUser().getId();
+    }
+
+    public void delete(Long id)
+    {
+        repo.delete(repo.getById(id));
+    }
 }

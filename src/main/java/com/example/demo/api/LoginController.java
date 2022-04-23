@@ -23,11 +23,12 @@ public class LoginController {
     private final UserService service;
 
     @PostMapping("/login")
-    public String register(@ModelAttribute("fashUser") FashUser user, HttpSession httpSession)
+    public String logIn(@ModelAttribute("fashUser") FashUser user, HttpSession httpSession)
     {
-        service.loadUserByUsername(user.getEmail());
-        user.setRole(UserRole.USER);
-        httpSession.setAttribute("user", user);
+        FashUser logged = (FashUser) service.loadUserByUsername(user.getUsername());
+        System.out.println(logged.getId());
+        System.out.println("poop");
+        httpSession.setAttribute("user", logged);
         return "hello";
     }
 
@@ -37,5 +38,17 @@ public class LoginController {
         return "login";
     }
 
-
+    @GetMapping("/hello")
+    public String which()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        FashUser user = (FashUser) auth.getPrincipal();
+        if(user.getRole().equals(UserRole.ADMIN))
+        {
+            return "redirect:a/hello";
+        }
+        else {
+            return "redirect:u/hello";
+        }
+    }
 }

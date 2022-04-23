@@ -95,6 +95,10 @@ public class FashUser implements Serializable, UserDetails {
         this.role = role;
     }
 
+    public UserRole getRole() {
+        return role;
+    }
+
     public FashUser(String username, String email, String password, UserRole role) {
         this.username = username;
         this.email = email;
