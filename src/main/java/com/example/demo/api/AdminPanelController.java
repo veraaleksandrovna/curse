@@ -1,13 +1,8 @@
 package com.example.demo.api;
 
-import com.example.demo.domain.Client;
-import com.example.demo.domain.Deal;
-import com.example.demo.domain.FashUser;
+import com.example.demo.domain.*;
 import com.example.demo.domain.roles.UserRole;
-import com.example.demo.service.ClientService;
-import com.example.demo.service.DealService;
-import com.example.demo.service.PieceService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +19,9 @@ public class AdminPanelController {
     private final PieceService pieceService;
     private final UserService userService;
     private final DealService dealService;
+    private final TypeService typeService;
+    private final CollectionService collectionService;
+    private final SexService sexService;
 
     @GetMapping("a/hello")
     String getPanel()
@@ -91,5 +89,78 @@ public class AdminPanelController {
         dealService.delete(dealUpd.getId());
         return "redirect:/a/orders";
     }
+//    @GetMapping("a/gifts")
+//    String getGifts(Model model)
+//    {
+//        ArrayList<GiftCard> giftCards = dealService.findAll();
+//        model.addAttribute("orders", deals);
+//        model.addAttribute("changeOrder", new Deal());
+//        return "adminOrders";
+//    }
+//
+//    @PostMapping("a/gifts/upd")
+//    String giftsUpdate(@ModelAttribute("order") Deal dealUpd){
+//        dealService.save(dealUpd);
+//        return "redirect:/a/orders";
+//    }
+//    @PostMapping("a/gifts/delete")
+//    String giftsDelete(@ModelAttribute("order") Deal dealUpd){
+//        dealService.delete(dealUpd.getId());
+//        return "redirect:/a/orders";
+//    }
 
+    @GetMapping("a/goods")
+    String getGoods()
+    {
+        return "adminGoods";
+    }
+
+    @GetMapping("a/goods/pieces")
+    String getPieces(Model model)
+    {
+        ArrayList<Piece> pieces = pieceService.findAll();
+        model.addAttribute("pieces", pieces);
+        model.addAttribute("changePiece", new Piece());
+        return "adminPieces";
+    }
+
+    @PostMapping("a/goods/pieces/upd")
+    String piecesUpdate(@ModelAttribute("piece") Piece pieceUpd){
+        Type type = typeService.fingByName(pieceUpd.getType().getName());
+        pieceUpd.setType(type);
+        Collection collection = collectionService.findByName(pieceUpd.getCollection().getName());
+        pieceUpd.setCollection(collection);
+        Sex sex = sexService.findByName(pieceUpd.getSex().getName());
+        pieceUpd.setSex(sex);
+        pieceService.save(pieceUpd);
+        return "redirect:/a/goods/pieces";
+    }
+    @PostMapping("a/goods/pieces/delete")
+    String piecesDelete(@ModelAttribute("piece") Piece pieceUpd){
+        pieceService.delete(pieceUpd.getId());
+        return "redirect:/a/goods/pieces";
+    }
+    @GetMapping("a/goods/types")
+    String getTypes(Model model)
+    {
+        ArrayList<Type> types = typeService.findAll();
+        ArrayList<Sex> sexes = sexService.findAll();
+        model.addAttribute("types", types);
+        model.addAttribute("changeType", new Type());
+        model.addAttribute("sexes", sexes);
+        return "adminTypes";
+    }
+
+    @PostMapping("a/goods/types/add")
+    String addType(@ModelAttribute("changeType") Type type){
+//        Sex sex = sexService.findByName(type.getSex().getName());
+//        type.setSex(sex);
+        typeService.add(type);
+        return "redirect:/a/goods/types";
+    }
+    @PostMapping("a/goods/types/delete")
+    String deleteType(@ModelAttribute("type") Type type){
+        typeService.delete(type.getId());
+        return "redirect:/a/goods/types";
+    }
 }

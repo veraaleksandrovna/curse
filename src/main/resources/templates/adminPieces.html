@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${changePiece}">
+<table>
+    <tr>
+        <td>Номер</td>
+        <td>Название</td>
+        <td>Размер</td>
+        <td>Цена</td>
+        <td>Коллекция</td>
+        <td>Тип</td>
+        <td>Категория</td>
+    </tr>
+
+    <tr th:each="piece:${pieces}">
+        <form th:action="@{/a/goods/pieces/upd}" method="post">
+            <td>
+                <input type="hidden" th:text="${piece.id}" th:value="${piece.id}" th:id="id" th:name="id">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.name}" th:field="*{name}">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.size}" th:field="*{size}">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.price}" th:field="*{price}">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.collection.name}" th:field="*{collection.name}">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.type.name}" th:field="*{type.name}">
+            </td>
+            <td>
+                <input type="text" th:text="${piece.sex.name}" th:field="*{sex.name}">
+            </td>
+            <td>
+                <input type="submit" value="Изменить">
+            </td>
+        </form>
+        <form th:action="@{a/goods/pieces/delete}" method="post">
+            <td>
+                <input type="hidden" th:value="${piece.id}" th:id="id" th:name="id">
+                <input type="submit" value="Удалить">
+            </td>
+        </form>
+    </tr>
+</table>
+
+
+</body>
+</html>

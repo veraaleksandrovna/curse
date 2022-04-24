@@ -25,11 +25,11 @@ public class Piece {
 
     @ManyToOne
     @JoinColumn(name = "sex_id", referencedColumnName = "id")
-    private Sex sexId;
+    private Sex sex;
 
     @ManyToOne
     @JoinColumn(name = "collection_id", referencedColumnName = "id")
-    private Collection collectionId;
+    private Collection collection;
 
 
     public Long getId() {
@@ -80,19 +80,19 @@ public class Piece {
         this.type = type;
     }
 
-    public Sex getSexId() {
-        return sexId;
+    public Sex getSex() {
+        return sex;
     }
 
-    public void setSexId(Sex sexId) {
-        this.sexId = sexId;
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
-    public Collection getCollectionId() {
-        return collectionId;
+    public Collection getCollection() {
+        return collection;
     }
 
-    public void setCollectionId(Collection collectionId) {
-        this.collectionId = collectionId;
+    public void setCollection(Collection collection) {
+        this.collection = collection;
     }
 }

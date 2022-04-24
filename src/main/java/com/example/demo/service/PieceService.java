@@ -33,9 +33,20 @@ public class PieceService {
     public ArrayList<Piece> findAllBySection(String section){
         return repo.findAllByTypeSection(section);
     }
+    public ArrayList<Piece> findAll(){
+        return (ArrayList<Piece>) repo.findAll();
+    }
 
     public Piece findById(Long id)
     {
         return repo.findPieceById(id);
+    }
+
+    public void save(Piece piece){
+        repo.save(piece);
+    }
+
+    public void delete(Long id) {
+        repo.delete(repo.findPieceById(id));
     }
 }

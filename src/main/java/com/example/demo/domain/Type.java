@@ -1,10 +1,14 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "type")
-
+@Getter
+@Setter
 public class Type {
 @Id
 @Column(name = "id")
@@ -13,6 +17,10 @@ public class Type {
 
 @Column(name = "name")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "sex_id", referencedColumnName = "id")
+    private Sex sex;
 
     public void setSection(String section) {
         this.section = section;

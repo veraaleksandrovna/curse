@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Добавить тип</h3>
+<form th:object="${changeType}" th:action="@{/a/goods/types/add}" method="post">
+    <input type="text" placeholder="Название" th:field="*{name}">
+    <input type="text" placeholder="Секция" th:field="*{section}">
+    <input type="text" placeholder="Категория" th:field="*{sex.name}">
+    <input type="submit" value="Добавить">
+</form>
+<table>
+    <tr>
+        <td>Номер</td>
+        <td>Тип</td>
+    </tr>
+
+    <tr th:each="type:${types}">
+        <form th:action="@{/a/types/upd}" method="post">
+            <td>
+                <input type="hidden" th:text="${type.id}" th:value="${type.id}" th:id="id" th:name="id">
+            </td>
+            <td>
+                <input type="hidden" th:text="${type.name}" >
+            </td>
+            <td>
+                <input type="hidden" th:text="${type.section}" >
+            </td>
+            <td>
+                <input type="hidden" th:text="${type.sex.name}" >
+            </td>
+        </form>
+        <form th:action="@{/a/goods/types/delete}" method="post">
+            <td>
+                <input type="hidden" th:value="${type.id}" th:id="id" th:name="id">
+                <input type="submit" value="Удалить">
+            </td>
+        </form>
+    </tr>
+</table>
+
+</body>
+</html>
