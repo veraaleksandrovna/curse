@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${changeUser}">
+<table>
+    <tr>
+        <td>Email</td>
+        <td>Имя пользователя</td>
+        <td>Пароль</td>
+    </tr>
+
+    <tr th:each="user:${users}">
+        <form th:action="@{/a/users/upd}" method="post">
+            <td>
+                <input type="hidden" th:value="${user.id}" th:id="id" th:name="id">
+                <input type="text" th:text="${user.email}" th:field="*{email}">
+            </td>
+            <td>
+                <input type="text" th:text="${user.username}" th:field="*{username}">
+            </td>
+            <td>
+                <input type="text" th:text="${user.password}" th:field="*{password}">
+            </td>
+
+            <td>
+                <input type="submit" value="Изменить">
+            </td>
+        </form>
+        <form th:action="@{/a/clients/delete}" method="post">
+            <td>
+                <input type="hidden" th:value="${user.id}" th:id="id" th:name="id">
+                <input type="submit" value="Удалить">
+            </td>
+        </form>
+    </tr>
+</table>
+
+
+</body>
+</html>

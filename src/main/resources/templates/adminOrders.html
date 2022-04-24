@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${changeOrder}">
+<table>
+    <tr>
+        <td>Номер</td>
+        <td>Номер товара</td>
+        <td>Номер клиента</td>
+        <td>Дата</td>
+        <td>Сумма</td>
+    </tr>
+
+    <tr th:each="order:${orders}">
+        <form th:action="@{/a/orders/upd}" method="post">
+            <td>
+                <input type="hidden" th:text="${order.id}" th:value="${order.id}" th:id="id" th:name="id">
+                </td>
+            <td>
+                <input type="hidden" th:text="${order.piece.id}" >
+            </td>
+            <td>
+                <input type="hidden" th:text="${order.client.id}" >
+            </td>
+            <td>
+                <input type="hidden" th:text="${order.date}" >
+            </td>
+            <td>
+                <input type="hidden" th:text="${order.sum}">
+            </td>
+
+        </form>
+        <form th:action="@{/a/orders/delete}" method="post">
+            <td>
+                <input type="hidden" th:value="${order.id}" th:id="id" th:name="id">
+                <input type="submit" value="Удалить">
+            </td>
+        </form>
+    </tr>
+</table>
+
+
+</body>
+</html>

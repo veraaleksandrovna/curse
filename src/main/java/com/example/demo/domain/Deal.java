@@ -16,7 +16,7 @@ public class Deal {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "goods_id", referencedColumnName = "id")
