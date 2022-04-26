@@ -7,14 +7,10 @@
     <title>Аксессуары</title>
 </head>
 <body>
+<a th:text="Назад" th:href="@{/u/articles}"></a>
+<h1 th:text="${article.getTitle()}"></h1>
 
-<table>
-    <tr th:each="article: ${articles}" >
-        <td>
-            <a th:text="${article.getTitle()}" th:href="@{/u/articles/utyre(id=${article.getId()})}"></a>
-        </td>
-    </tr>
-</table>
+<p th:text="${article.getText()}"></p>
 
 </body>
 </html>

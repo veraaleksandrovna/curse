@@ -25,4 +25,8 @@ public class ArticleService {
     public ArrayList<Artcile> findAll(){
         return repo.findAll();
     }
+
+    public Artcile findById(Long id) {
+        return repo.findById(id).get();
+    }
 }

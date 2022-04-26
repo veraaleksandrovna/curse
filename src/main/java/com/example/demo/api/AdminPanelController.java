@@ -22,6 +22,7 @@ public class AdminPanelController {
     private final TypeService typeService;
     private final CollectionService collectionService;
     private final SexService sexService;
+    private final GiftCardService giftCardService;
 
     @GetMapping("a/hello")
     String getPanel()
@@ -153,8 +154,8 @@ public class AdminPanelController {
 
     @PostMapping("a/goods/types/add")
     String addType(@ModelAttribute("changeType") Type type){
-//        Sex sex = sexService.findByName(type.getSex().getName());
-//        type.setSex(sex);
+        Sex sex = sexService.findByName(type.getSex().getName());
+        type.setSex(sex);
         typeService.add(type);
         return "redirect:/a/goods/types";
     }
@@ -162,5 +163,45 @@ public class AdminPanelController {
     String deleteType(@ModelAttribute("type") Type type){
         typeService.delete(type.getId());
         return "redirect:/a/goods/types";
+    }
+
+
+    @GetMapping("a/goods/collections")
+    String getCollections(Model model)
+    {
+        ArrayList<Collection> collections = collectionService.findAll();
+        model.addAttribute("addCollection", new Collection());
+        model.addAttribute("collections", collections);
+        return "adminCollections";
+    }
+
+    @PostMapping("a/goods/collections/add")
+    String addCollection(@ModelAttribute("addCollection") Collection collection){
+    collectionService.add(collection);
+    return "redirect:/a/goods/collections";
+    }
+    @PostMapping("a/goods/collections/delete")
+    String deleteCollection(@ModelAttribute("collection") Collection collection){
+        collectionService.delete(collection.getId());
+        return "redirect:/a/goods/collections";
+    }
+    @GetMapping("a/gifts")
+    String getGifts(Model model)
+    {
+        ArrayList<GiftCard> giftCards = giftCardService.findAll();
+        model.addAttribute("addGiftCard", new GiftCard());
+        model.addAttribute("giftCards", giftCards);
+        return "adminGiftCards";
+    }
+
+    @PostMapping("a/gifts/add")
+    String addGifts(@ModelAttribute("addGiftCard") GiftCard giftCard){
+    giftCardService.add(giftCard);
+    return "redirect:/a/gifts";
+    }
+    @PostMapping("a/gifts/delete")
+    String deleteGifts(@ModelAttribute("giftcard") GiftCard giftCard){
+    giftCardService.delete(giftCard.getId());
+    return "redirect:/a/gifts";
     }
 }

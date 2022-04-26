@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Добавить коллекцию</h3>
+<form id="form" th:object="${addGiftCard}" th:action="@{/a/gifts/add}" method="post">
+    <input type="text" placeholder="Номинал" th:field="*{price}">
+    <!--    <input type="text" placeholder="Категория" >-->
+    <input type="submit" value="Добавить">
+</form>
+<table>
+    <tr>
+        <td>Номер</td>
+        <td>Номинал</td>
+    </tr>
+
+    <tr th:each="giftcard:${giftCards}">
+        <form th:action="@{/a/gifts/upd}" method="post">
+            <td>
+                <input type="hidden" th:text="${giftcard.id}" th:value="${giftcard.id}" th:id="id" th:name="id">
+            </td>
+            <td>
+                <input type="hidden" th:text="${giftcard.price}" >
+            </td>
+        </form>
+        <form th:action="@{/a/goods/collections/delete}" method="post">
+            <td>
+                <input type="hidden" th:value="${giftcard.id}" th:id="id" th:name="id">
+                <input type="submit" value="Удалить">
+            </td>
+        </form>
+    </tr>
+</table>
+
+</body>
+</html>

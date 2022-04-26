@@ -8,16 +8,21 @@
 </head>
 <body>
 <h3>Добавить тип</h3>
-<form th:object="${changeType}" th:action="@{/a/goods/types/add}" method="post">
+<form id="form" th:object="${changeType}" th:action="@{/a/goods/types/add}" method="post">
     <input type="text" placeholder="Название" th:field="*{name}">
     <input type="text" placeholder="Секция" th:field="*{section}">
-    <input type="text" placeholder="Категория" th:field="*{sex.name}">
+    <select form="form" th:field="*{sex.name}">
+        <option  th:value="${sex.name}" th:text="${sex.name}" th:each="sex:${sexes}" ></option>
+    </select>
+<!--    <input type="text" placeholder="Категория" >-->
     <input type="submit" value="Добавить">
 </form>
 <table>
     <tr>
         <td>Номер</td>
         <td>Тип</td>
+        <td>Секция</td>
+        <td>Категория</td>
     </tr>
 
     <tr th:each="type:${types}">
