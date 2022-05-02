@@ -14,16 +14,18 @@
     <input type="text" placeholder="Год" th:field="*{year}">
     <input type="text" placeholder="Автор" th:field="*{author}">
 <!--    <input type="text" placeholder="Категория" >-->
-    <input type="submit" value="Добавить">
+    <input type="submit" class="btn btn-primary" value="Добавить">
 </form>
-<table>
+<table class="table table-striped">
+    <thead>
     <tr>
         <td>Номер</td>
         <td>Название</td>
         <td>Год</td>
         <td>Автор</td>
     </tr>
-
+    </thead>
+    <tbody></tbody>
     <tr th:each="collection:${collections}">
         <form th:action="@{/a/collections/upd}" method="post">
             <td>
@@ -42,10 +44,11 @@
         <form th:action="@{/a/goods/collections/delete}" method="post">
             <td>
                 <input type="hidden" th:value="${collection.id}" th:id="id" th:name="id">
-                <input type="submit" value="Удалить">
+                <input type="submit" class="btn btn-danger"value="Удалить">
             </td>
         </form>
     </tr>
+    </tbody>
 </table>
 
 </body>

@@ -8,9 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <a th:href="@{goods/pieces}">Товары</a>
-    <a th:href="@{goods/types}">Виды товаров</a>
-    <a th:href="@{goods/collections}">Коллекции</a>
-
+<div class="container">
+    <div class = "row">
+        <div class = "col-md-3">
+    <a th:href="@{goods/pieces}" class="btn btn-danger btn-lg btn-block btn-huge">Товары</a>
+        </div>
+        <div class = "col-md-3">
+    <a th:href="@{goods/types}" class="btn btn-danger btn-lg btn-block btn-huge" >Виды товаров</a>
+        </div>
+            <div class = "col-md-3">
+    <a th:href="@{goods/collections}"  class="btn btn-danger btn-lg btn-block btn-huge">Коллекции</a>
+            </div>
+    </div>
+</div>
 </body>
 </html>
