@@ -23,20 +23,28 @@
     </span>
 </nav>
 <h3 th:text="${item.getName()}"></h3>
-<table>
+<table class="table table-striped">
+    <tbody>
     <tr>
         <td th:text="${item.getName()}" />
         <td th:text="${item.getPrice()}" />
         <td th:text="${item.getSize()}" />
         <td th:text="${item.getType().getName()}" />
     </tr>
+    </tbody>
 </table>
 <br>
 <form method="post" th:action="@{/u/order/newCl(id=${item.getId()})}" th:object="${clientt}">
-    <input type="text" placeholder="name" th:field="*{name}">
-    <input type="text" placeholder="last name" th:field="*{lastName}">
-    <input type="text" placeholder="age" th:field="*{age}">
-    <input type="submit" value="Добавить данные клиента">
+    <div class = "form-group">
+    <input type="text" class="form-control" placeholder="name" th:field="*{name}">
+    </div>
+    <div class = "form-group">
+    <input type="text"  class="form-control" placeholder="last name" th:field="*{lastName}">
+    </div>
+    <div class = "form-group">
+    <input type="text" class="form-control" placeholder="age" th:field="*{age}">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Добавить данные клиента">
 </form>
 
 </body>

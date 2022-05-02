@@ -22,7 +22,8 @@
       <h4><a th:href="@{/u/account}">Мой аккаунт</a></h4>
     </span>
 </nav>
-<table>
+<table class="table table-striped">
+    <tbody>
     <tr th:each="bag: ${bags}" >
         <td th:text="${bag.getName()}" />
         <td th:text="${bag.getPrice()}" />
@@ -30,6 +31,7 @@
             <a th:href="@{/u/bags/buy(id=${bag.getId()})}">Buy</a>
         </td>
     </tr>
+    </tbody>
 </table>
 
 </body>

@@ -22,21 +22,36 @@
       <h4><a th:href="@{/u/account}">Мой аккаунт</a></h4>
     </span>
 </nav>
-<table th:object="${item}">
+<table th:object="${item}" class="table table-striped">
+<tbody>
     <tr>
         <td th:text="${item.getName()}" />
         <td th:text="${item.getPrice()}" />
         <td th:text="${item.getSize()}" />
         <td th:text="${item.getType().getName()}" />
     </tr>
+</tbody>
 </table>
 <form method="post" th:action="@{/u/order/success(id=${item.getId()})}">
-    <input type="text" placeholder="Город" th:name="city">
-    <input type="text" placeholder="Улица" th:name="street">
-    <input type="text" placeholder="Дом" th:name="house">
+    <div class = "form-group">
+        <label for = "cityInput">Город</label>
+    <input type="text" class="form-control" id="cityInput"  placeholder="Город" th:name="city">
+    </div>
+    <div class = "form-group">
+        <label for = "streetInput">Улица</label>
+    <input type="text" class="form-control" id="streetInput" placeholder="Улица" th:name="street">
+    </div>
+    <div class = "form-group">
+        <label for = "homeInput">Дом</label>
+    <input type="text" class="form-control" id="homeInput" placeholder="Дом" th:name="house">
+    </div>
+    <div class = "form-group">
     <input type="text" placeholder="Квартира" th:name="apt">
-    <input type="submit" value="Оформить">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Оформить">
 </form>
-
+<!--  <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
 </body>
 </html>

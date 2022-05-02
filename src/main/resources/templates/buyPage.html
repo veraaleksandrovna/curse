@@ -23,15 +23,16 @@
     </span>
 </nav>
 <h3 th:text="${item.getName()}"></h3>
-<table>
+<table class="table table-striped">
+    <tbody>
     <tr>
         <td th:text="${item.getName()}" />
         <td th:text="${item.getPrice()}" />
         <td th:text="${item.getSize()}" />
         <td th:text="${item.getType().getName()}" />
     </tr>
+    </tbody>
 </table>
-
-<a th:href="@{/u/order(id=${item.getId()})}">Buy</a>
+<a class="btn btn-info" th:href="@{/u/order(id=${item.getId()})}">Buy</a>
 </body>
 </html>
