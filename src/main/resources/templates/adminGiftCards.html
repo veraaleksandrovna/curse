@@ -12,14 +12,16 @@
 <form id="form" th:object="${addGiftCard}" th:action="@{/a/gifts/add}" method="post">
     <input type="text" placeholder="Номинал" th:field="*{price}">
     <!--    <input type="text" placeholder="Категория" >-->
-    <input type="submit" value="Добавить">
+    <input type="submit" class="btn btn-primary" value="Добавить">
 </form>
-<table>
+<table class="table table-striped">
+    <thead>
     <tr>
         <td>Номер</td>
         <td>Номинал</td>
     </tr>
-
+    </thead>
+    <tbody>
     <tr th:each="giftcard:${giftCards}">
         <form th:action="@{/a/gifts/upd}" method="post">
             <td>
@@ -32,10 +34,11 @@
         <form th:action="@{/a/goods/collections/delete}" method="post">
             <td>
                 <input type="hidden" th:value="${giftcard.id}" th:id="id" th:name="id">
-                <input type="submit" value="Удалить">
+                <input type="submit"  class="btn btn-danger"  value="Удалить">
             </td>
         </form>
     </tr>
+    </tbody>
 </table>
 
 </body>

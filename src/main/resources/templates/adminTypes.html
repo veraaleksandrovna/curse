@@ -16,16 +16,18 @@
         <option  th:value="${sex.name}" th:text="${sex.name}" th:each="sex:${sexes}" ></option>
     </select>
 <!--    <input type="text" placeholder="Категория" >-->
-    <input type="submit" value="Добавить">
+    <input type="submit" class="btn btn-primary" value="Добавить">
 </form>
-<table>
+<table class="table table-striped">
+    <thead>
     <tr>
         <td>Номер</td>
         <td>Тип</td>
         <td>Секция</td>
         <td>Категория</td>
     </tr>
-
+    </thead>
+    <tbody>
     <tr th:each="type:${types}">
         <form th:action="@{/a/types/upd}" method="post">
             <td>
@@ -44,10 +46,11 @@
         <form th:action="@{/a/goods/types/delete}" method="post">
             <td>
                 <input type="hidden" th:value="${type.id}" th:id="id" th:name="id">
-                <input type="submit" value="Удалить">
+                <input type="submit" class="btn btn-danger" value="Удалить">
             </td>
         </form>
     </tr>
+    </tbody>
 </table>
 
 </body>

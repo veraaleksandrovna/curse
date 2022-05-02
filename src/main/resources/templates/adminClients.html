@@ -16,7 +16,7 @@
         <td>Возраст</td>
     </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
     <tr th:each="client:${clients}">
         <form th:action="@{/a/clients/upd}" method="post">
             <td>
