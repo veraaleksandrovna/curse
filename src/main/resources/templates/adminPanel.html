@@ -8,11 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<a th:href="@{/a/clients}">Клиенты</a>
-<a th:href="@{/a/users}">Пользователи</a>
-<a th:href="@{/a/orders}">Заказы</a>
-<a th:href="@{/a/goods}">Товары</a>
-<a th:href="@{/a/gifts}">Подарочные сертификаты</a>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class = "navbar-brand">KURSACH 2022</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+<a class="nav-item nav-link" th:href="@{/a/clients}">Клиенты</a>
+<a class="nav-item nav-link" th:href="@{/a/users}">Пользователи</a>
+<a class="nav-item nav-link" th:href="@{/a/orders}">Заказы</a>
+<a class="nav-item nav-link" th:href="@{/a/goods}">Товары</a>
+<a class="nav-item nav-link" th:href="@{/a/gifts}">Подарочные сертификаты</a>
+        </div>
+    </div>
+</nav>
+<main class = "container">
+    <img src = "../images/pic1.jpg" width = "100%" height="100%">
+</main>
 </body>
 </html>
