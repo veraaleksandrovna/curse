@@ -27,7 +27,7 @@ public class MainPageController {
     public String hello(Model model, HttpSession session){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("username","Hello " + auth.getName() + "!");
-        ArrayList<Piece> bags = pieceService.findThreePieces("bags");
+       /* ArrayList<Piece> bags = pieceService.findThreePieces("bags");
         ArrayList<Piece> sneakers = pieceService.findThreePieces("sneakers");
         ArrayList<Artcile> artciles = articleService.findThreeArticles();
         model.addAttribute("bag1", bags.get(0));
@@ -41,7 +41,7 @@ public class MainPageController {
         model.addAttribute("story1", artciles.get(0));
         model.addAttribute("story2", artciles.get(1));
         model.addAttribute("story3", artciles.get(2));
-
+*/
         return "hello";
     }
 
