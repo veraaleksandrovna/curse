@@ -9,12 +9,14 @@
 </head>
 <body>
 
-<table>
+<table class="table table-striped">
+    <tbody>
     <tr th:each="article: ${articles}" >
         <td>
             <a th:text="${article.getTitle()}" th:href="@{/u/articles/utyre(id=${article.getId()})}"></a>
         </td>
     </tr>
+    </tbody>
 </table>
 
 </body>

@@ -90,26 +90,6 @@ public class AdminPanelController {
         dealService.delete(dealUpd.getId());
         return "redirect:/a/orders";
     }
-//    @GetMapping("a/gifts")
-//    String getGifts(Model model)
-//    {
-//        ArrayList<GiftCard> giftCards = dealService.findAll();
-//        model.addAttribute("orders", deals);
-//        model.addAttribute("changeOrder", new Deal());
-//        return "adminOrders";
-//    }
-//
-//    @PostMapping("a/gifts/upd")
-//    String giftsUpdate(@ModelAttribute("order") Deal dealUpd){
-//        dealService.save(dealUpd);
-//        return "redirect:/a/orders";
-//    }
-//    @PostMapping("a/gifts/delete")
-//    String giftsDelete(@ModelAttribute("order") Deal dealUpd){
-//        dealService.delete(dealUpd.getId());
-//        return "redirect:/a/orders";
-//    }
-
     @GetMapping("a/goods")
     String getGoods()
     {
