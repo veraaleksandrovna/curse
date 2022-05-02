@@ -17,7 +17,20 @@
     <title>Title</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class = "navbar-brand">KURSACH USER</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" th:href="@{/u/bags}">Сумки</a>
+            <a class="nav-item nav-link" th:href="@{/u/clothing}">Одежда</a>
+            <a class="nav-item nav-link" th:href="@{/u/shoes}">Обувь</a>
+            <a class="nav-item nav-link" th:href="@{/u/articles}">Статьи</a>
+        </div>
+    </div>
+    <span class="navbar-text">
+      <h4><a th:href="@{/u/account}">Мой аккаунт</a></h4>
+    </span>
+</nav>
 <table>
     <tr th:each="shoe: ${shoes}" >
         <td th:text="${shoe.getName()}" />
