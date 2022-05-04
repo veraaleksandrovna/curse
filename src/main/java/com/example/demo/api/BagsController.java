@@ -18,7 +18,7 @@ public class BagsController {
 
     @GetMapping("/u/bags")
     public String bags(Model model){
-        ArrayList<Piece> bags = pieceService.findAllBySection("Сумки");
+        ArrayList<Piece> bags = pieceService.findAllBySection("Сухие цветы");
         model.addAttribute("bags", bags);
         return "bags";
     }

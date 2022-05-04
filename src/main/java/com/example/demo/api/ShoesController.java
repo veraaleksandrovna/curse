@@ -18,7 +18,7 @@ public class ShoesController {
     @GetMapping("/u/shoes")
     public String shoes(Model model){
 
-        ArrayList<Piece> shoes = pieceService.findAllBySection("Обувь");
+        ArrayList<Piece> shoes = pieceService.findAllBySection("Свежие цветы");
         model.addAttribute("shoes", shoes);
 
         return "shoes";

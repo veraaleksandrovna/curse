@@ -16,10 +16,10 @@ public interface PieceRepo extends JpaRepository<Piece, Long> {
     @Query("select count (p) from Piece p")
     int countPieceById();
 
-    @Query("select p from Piece p, Type t where p.type = t and t.name='Рюкзаки'")
+    @Query("select p from Piece p, Type t where p.type = t and t.name='Розы'")
     ArrayList<Piece> findThreeBags();
 
-    @Query("select p from Piece p, Type t where p.type = t and t.name='Кроссовки'")
+    @Query("select p from Piece p, Type t where p.type = t and t.name='Гипсофилы'")
     ArrayList<Piece> findThreeSneakers();
 
     @Query("select p from Piece p, Type t where p.type = t and t.section=?1")

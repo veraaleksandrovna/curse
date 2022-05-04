@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Client;
 import com.example.demo.domain.Deal;
 import com.example.demo.repos.DealRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,9 @@ public class DealService {
 
     public void delete(Long id) {
         dealRepo.delete(dealRepo.getById(id));
+    }
+
+    public ArrayList<Deal> findAllByClient(Client client){
+        return dealRepo.findAllByClient(client);
     }
 }

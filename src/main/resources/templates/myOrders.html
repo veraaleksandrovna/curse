@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body th:object="${item}">
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class = "navbar-brand">KURSACH USER</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,30 +23,36 @@
       <h4><a th:href="@{/u/myOrders}">Мои заказы</a></h4>
     </span>
 </nav>
-<h3 th:text="${item.getName()}"></h3>
+<a th:href="@{/u/hello}">Назад</a>
 <table class="table table-striped">
-    <tbody>
+    <thead>
     <tr>
-        <td th:text="${item.getName()}" />
-        <td th:text="${item.getPrice()}" />
-        <td th:text="${item.getSize()}" />
-        <td th:text="${item.getType().getName()}" />
+        <td>Товар</td>
+        <td>Дата</td>
+        <td>Сумма</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order:${orders}">
+    <form th:object="${order}" th:action="@{/u/myOrders/delete}" method="post">
+        <td>
+            <input type="hidden" th:value="${order.id}" th:id="id" th:name="id">
+            <input type="hidden" th:text="${order.piece.name}">
+        </td>
+        <td>
+            <input type="hidden" th:text="${order.date}">
+        </td>
+        <td>
+            <input type="hidden" th:text="${order.sum}">
+        </td>
+        <td>
+            <input type="submit" value="Удалить">
+        </td>
+    </form>
     </tr>
     </tbody>
 </table>
-<br>
-<form method="post" th:action="@{/u/order/newCl(id=${item.getId()})}" th:object="${clientt}">
-    <div class = "form-group">
-    <input type="text" class="form-control" placeholder="name" th:field="*{name}">
-    </div>
-    <div class = "form-group">
-    <input type="text"  class="form-control" placeholder="last name" th:field="*{lastName}">
-    </div>
-    <div class = "form-group">
-    <input type="text" class="form-control" placeholder="age" th:field="*{age}">
-    </div>
-    <input type="submit" class="btn btn-primary" value="Добавить данные клиента">
-</form>
+
 
 </body>
 </html>
